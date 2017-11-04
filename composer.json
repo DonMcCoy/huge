@@ -13,5 +13,8 @@
     },
     "autoload": {
         "psr-4": { "": ["application/core/", "application/model/"] }
+    },
+    "require": {
+        "google/recaptcha": "~1.1"
     }
 }

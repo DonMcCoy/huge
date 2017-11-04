@@ -61,4 +61,14 @@ class Request
             return $_COOKIE[$key];
         }
     }
+
+    /**
+     * gets/returns the value of a specific key of the SERVER super-global
+     * @param mixed $key key
+     * @return mixed state of the checkbox
+     */
+    public static function server($key)
+    {
+        return isset($_SERVER[$key]) ? $_SERVER[$key] : NULL;
+    }
 }

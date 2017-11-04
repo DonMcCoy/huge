@@ -43,4 +43,19 @@ class CaptchaModel
 
         return false;
     }
+
+    /**
+     * Checks if the entered reCAPTCHA response is correct
+     * @param $gReCaptchaResponse string The captcha characters
+     * @return bool success of captcha check
+     */
+    public static function checkRecaptcha($gReCaptchaResponse) {
+        $recaptcha = new \ReCaptcha\ReCaptcha(Config::get('RECAPTCHA_SECRET'));
+        $resp = $recaptcha->verify($gReCaptchaResponse, Request::server('REMOTE_ADDR'));
+        if($resp->isSuccess()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

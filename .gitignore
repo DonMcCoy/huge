@@ -3,3 +3,4 @@
 /nbproject/private/
 # don't commit all the dependencies fetched via Composer
 /vendor/
+/.idea/

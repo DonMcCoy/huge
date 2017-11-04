@@ -16,14 +16,17 @@
             <input type="password" name="user_password_new" pattern=".{6,}" placeholder="Password (6+ characters)" required autocomplete="off" />
             <input type="password" name="user_password_repeat" pattern=".{6,}" required placeholder="Repeat your password" autocomplete="off" />
 
-            <!-- show the captcha by calling the login/showCaptcha-method in the src attribute of the img tag -->
-            <img id="captcha" src="<?php echo Config::get('URL'); ?>register/showCaptcha" />
-            <input type="text" name="captcha" placeholder="Please enter above characters" required />
+            <?php if (Config::get('RECAPTCHA_ENABLED')) { ?>
+                <div class="g-recaptcha" data-sitekey="<?php echo Config::get('RECAPTCHA_SITEKEY'); ?>"></div>
+                <script src="https://www.google.com/recaptcha/api.js"></script>
+            <?php } else { ?>
+                <!-- show the captcha by calling the login/showCaptcha-method in the src attribute of the img tag -->
+                <img id="captcha" src="<?php echo Config::get('URL'); ?>register/showCaptcha" />
+                <input type="text" name="captcha" placeholder="Please enter above characters" required />
 
-            <!-- quick & dirty captcha reloader -->
-            <a href="#" style="display: block; font-size: 11px; margin: 5px 0 15px 0; text-align: center"
-               onclick="document.getElementById('captcha').src = '<?php echo Config::get('URL'); ?>register/showCaptcha?' + Math.random(); return false">Reload Captcha</a>
-
+                <!-- quick & dirty captcha reloader -->
+                <a href="#" style="display: block; font-size: 11px; margin: 5px 0 15px 0; text-align: center" onclick="document.getElementById('captcha').src = '<?php echo Config::get('URL'); ?>register/showCaptcha?' + Math.random(); return false">Reload Captcha</a>
+            <?php } ?>
             <input type="submit" value="Register" />
         </form>
     </div>
